@@ -36,15 +36,28 @@ services:
       - ./symfony:/app/
     links:
       - mysql
+  # api:
+  #   image: webdevops/php-apache-dev:8.0-alpine
+  #   ports:
+  #     - '8108:80'
+  #   working_dir: /app
+  #   env_file:
+  #     - ./api/.env
+  #   volumes:
+  #     - ./api:/app/
+  #   links:
+  #     - mysql
   app:
-    container_name: heise
     image: node:16.15.1
     working_dir: /var/www/html
+    #entrypoint: /bin/bash
+    #expose:
+    #  - 8008
     ports:
       - 8008:8008
     volumes:
       - ./:/var/www/html/
-    command: 'npm run dev'
+    command: 'npm run dev' #tty: true
     links:
       - mysql
       - symfony

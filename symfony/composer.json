@@ -2,7 +2,7 @@
     "name": "simple-news-server/symfony-api",
     "author": "Sibylle Naegle <naegle@diewebentwicklerin.de>",
     "type": "project",
-    "license": "MIT",
+    "license": "GPL V3",
     "description": "API for the simple-news-server",
     "require": {
         "php": ">=8.0.2",
