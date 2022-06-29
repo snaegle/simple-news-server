@@ -1,0 +1,52 @@
+version: '3.4'
+services:
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - mysql
+    links:
+      - mysql:mysql
+    ports:
+      - '8088:80'
+    environment:
+      PMA_HOST: mysql
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_ROOT_PASSWORD: mysql
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: api
+      MYSQL_DATABASE: api
+      MYSQL_USER: api
+      MYSQL_PASSWORD: api
+    command: 'mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci'
+    ports:
+      - '33068:3306'
+    volumes:
+      - db-data:/var/lib/mysql
+  symfony:
+    image: webdevops/php-apache-dev:8.0-alpine
+    ports:
+      - '8108:80'
+    working_dir: /app
+    env_file:
+      - ./symfony/.env
+    volumes:
+      - ./symfony:/app/
+    links:
+      - mysql
+  app:
+    container_name: heise
+    image: node:16.15.1
+    working_dir: /var/www/html
+    ports:
+      - 8008:8008
+    volumes:
+      - ./:/var/www/html/
+    command: 'npm run dev'
+    links:
+      - mysql
+      - symfony
+volumes:
+  db-data:

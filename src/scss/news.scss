@@ -1,0 +1,49 @@
+.newNewsItem {
+
+  .input-group-prepend {
+    display: flex;
+    min-width: 5rem;
+
+
+    .input-group-text {
+      background-color: transparent;
+    }
+
+    span {
+      display: flex;
+      flex-grow: 1;
+    }
+  }
+
+  .datePicker {
+    display: flex;
+    flex-grow: 1;
+
+    .vue-daterange-picker {
+      display: flex;
+      flex-grow: 1;
+
+      .form-control {
+        display: flex;
+      }
+    }
+  }
+}
+
+.masonry-item {
+  padding: .5rem;
+
+  .card-body {
+    margin-bottom: 0.5rem;
+  }
+
+  .handles {
+    position: absolute;
+    right: 0.25rem;
+    bottom: 0.25rem;
+
+    svg {
+      margin-left: 0.25rem;
+    }
+  }
+}
